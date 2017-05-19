@@ -57,13 +57,21 @@ class LunchScreen extends React.Component {
 
 class RecentEventsScreen extends React.Component {
   render() {
-    return <Text>All them recent events</Text>
+    return (
+      <View>
+        <Text>All them recent events</Text>
+        <Button
+          onPress={() => this.props.navigation.navigate('Chat', {user: 'Lucy' })}
+          title='Chat with Lucy'
+        />
+      </View>
+    )
   }
 }
 
 class AllContactsScreen extends React.Component {
   render() {
-    return <Text>List of all contactes </Text>
+    return <Text>List of all contacts </Text>
   }
 }
 
@@ -72,10 +80,14 @@ const MainScreenNavigator = TabNavigator({
   All: { screen: AllContactsScreen },
 });
 
+MainScreenNavigator.navigationOptions = {
+  title: 'my chats',
+}
+
 // This navigator is what gets registered by Expo!
 const SimpleApp = StackNavigator({
   // Each of the screens has to correspond with the actual component
-  Home: { screen: App },
+  Home: { screen: MainScreenNavigator },
   Chat: { screen: ChatScreen },
   Lunch: { screen: LunchScreen },
 });
@@ -89,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-Expo.registerRootComponent(MainScreenNavigator);
+Expo.registerRootComponent(SimpleApp);
