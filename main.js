@@ -19,6 +19,10 @@ class App extends React.Component {
           onPress={() => navigate('Chat')}
           title="Chat with Lucy"
         />
+        <Button
+          onPress={() => navigate('Lunch', { user: 'Fredericsir' })}
+          title="Lunch with Frederic"
+        />
       </View>
     );
   }
@@ -37,11 +41,26 @@ class ChatScreen extends React.Component {
   }
 }
 
+class LunchScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `Get some food with ${navigation.state.params.user}`,
+  });
+  render() {
+    const { params } = this.props.navigation.state;
+    return (
+      <View>
+        <Text>Lunch with {params.user}</Text>
+      </View>
+    )
+  }
+}
+
 // This navigator is what gets registered by Expo!
 const SimpleApp = StackNavigator({
   // Each of the screens has to correspond with the actual component
   Home: { screen: App },
-  Chat: { screen: ChatScreen }
+  Chat: { screen: ChatScreen },
+  Lunch: { screen: LunchScreen },
 });
 
 const styles = StyleSheet.create({
