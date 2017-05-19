@@ -75,11 +75,14 @@ class AllContactsScreen extends React.Component {
   }
 }
 
+// Nested navigation- tab navigator is passed into stack navigator
 const MainScreenNavigator = TabNavigator({
   Recent: { screen: RecentEventsScreen },
   All: { screen: AllContactsScreen },
+  Newest: { screen: App },
 });
 
+// Because MainScreenNavigator is passed into stackNavigator, can still set navigation options...
 MainScreenNavigator.navigationOptions = {
   title: 'my chats',
 }
