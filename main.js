@@ -1,7 +1,7 @@
 import Expo from 'expo';
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 
 // This is just a simple screen that is passed into the navigator
 class App extends React.Component {
@@ -55,6 +55,23 @@ class LunchScreen extends React.Component {
   }
 }
 
+class RecentEventsScreen extends React.Component {
+  render() {
+    return <Text>All them recent events</Text>
+  }
+}
+
+class AllContactsScreen extends React.Component {
+  render() {
+    return <Text>List of all contactes </Text>
+  }
+}
+
+const MainScreenNavigator = TabNavigator({
+  Recent: { screen: RecentEventsScreen },
+  All: { screen: AllContactsScreen },
+});
+
 // This navigator is what gets registered by Expo!
 const SimpleApp = StackNavigator({
   // Each of the screens has to correspond with the actual component
@@ -72,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-Expo.registerRootComponent(SimpleApp);
+Expo.registerRootComponent(MainScreenNavigator);
